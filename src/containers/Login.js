@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
+import { Auth } from "aws-amplify";
 
 export default function Login(props) {
     // Right at the top of our component, we are using the useState hook (https://reactjs.org/docs/hooks-state.html) to store what the user enters in the form. The useState hook just gives you the current value of the variable you want to store in the state and a func5on to set the new value.
@@ -9,8 +10,16 @@ export default function Login(props) {
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
-    function handleSubmit(event) {
+
+    async function handleSubmit(event) { 
         event.preventDefault();
+        try {
+            await Auth.signIn(email, password); 
+            alert("Logged in");
+        } catch (e) { 
+            console.log(e);
+            alert(e.message);
+        }
     }
     return (
         <div className="Login">
