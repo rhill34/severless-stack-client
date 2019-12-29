@@ -7,6 +7,8 @@ export default function Login(props) {
     // Right at the top of our component, we are using the useState hook (https://reactjs.org/docs/hooks-state.html) to store what the user enters in the form. The useState hook just gives you the current value of the variable you want to store in the state and a func5on to set the new value.
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
@@ -20,6 +22,7 @@ export default function Login(props) {
         } catch (e) { 
             console.log(e);
             alert(e.message);
+            setIsLoading(false);
         }
     }
     return (
