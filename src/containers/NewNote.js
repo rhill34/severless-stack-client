@@ -1,10 +1,61 @@
-/**
- reference link:  https://serverless-stack.com/chapters/add-the-create-note-page.html
-Now that we can signup users and also log them in. Let’s get started with the most important part of our note taking app; the crea:on of a note.
+import React, { useRef, useState } from "react";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import LoaderButton from "../components/LoaderButton";
+import config from "../config";
+import "./NewNote.css";
 
-First we are going to create the form for a note. It’ll take some content and a file as an a>achment.
+export default function NewNote(props) {
+  const file = useRef(null);
+  const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-**This Part is the Challenge to get the user to be able to record / upload a from the there device up to a 30 second video file and  a PDF file for the resume or content. 
+  function validateForm() {
+    return content.length > 0;
+  }
 
---Remember Mini Glory 
-*/
+  function handleFileChange(event) {
+    file.current = event.target.files[0];
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
+      alert(
+        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
+          1000000} MB.`
+      );
+      return;
+    }
+
+    setIsLoading(true);
+  }
+
+  return (
+    <div className="NewNote">
+      <form onSubmit={handleSubmit}>
+        <FormGroup controlId="content">
+          <FormControl
+            value={content}
+            componentClass="textarea"
+            onChange={e => setContent(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup controlId="file">
+          <ControlLabel>Attachment</ControlLabel>
+          <FormControl onChange={handleFileChange} type="file" />
+        </FormGroup>
+        <LoaderButton
+          block
+          type="submit"
+          bsSize="large"
+          bsStyle="primary"
+          isLoading={isLoading}
+          disabled={!validateForm()}
+        >
+          Create
+        </LoaderButton>
+      </form>
+    </div>
+  );
+}

@@ -14,5 +14,6 @@ export default {
         REGION: "us-west-2",
         USER_POOL_ID: "us-west-2_i7GiQoGD0", 
         APP_CLIENT_ID: "67sr2rr6dmeci5g2vn44vsgup9", IDENTITY_POOL_ID: "us-west-2:9cbf4c73-a756-4ae6-a50f-0ccf83741171"
-    }
+    },
+    MAX_ATTACHMENT_SIZE: 5000000
 };
