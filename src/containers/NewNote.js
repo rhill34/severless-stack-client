@@ -1,4 +1,5 @@
 /**
+ reference link:  https://serverless-stack.com/chapters/add-the-create-note-page.html
 Now that we can signup users and also log them in. Let’s get started with the most important part of our note taking app; the crea:on of a note.
 
 First we are going to create the form for a note. It’ll take some content and a file as an a>achment.
