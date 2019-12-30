@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
 import { Auth } from "aws-amplify";
 
@@ -13,13 +14,13 @@ export default function Login(props) {
         return email.length > 0 && password.length > 0;
     }
 
-    async function handleSubmit(event) { 
+    async function handleSubmit(event) {
         event.preventDefault();
         try {
-            await Auth.signIn(email, password); 
+            await Auth.signIn(email, password);
             console.log("Logged In");
             props.history.push("/");
-        } catch (e) { 
+        } catch (e) {
             console.log(e);
             alert(e.message);
             setIsLoading(false);
@@ -43,9 +44,15 @@ export default function Login(props) {
                         type="password"
                     />
                 </FormGroup>
-                <Button block bsSize="large" disabled=
-                    {!validateForm()} type="submit"> Login
-                </Button>
+                <LoaderButton
+                    block
+                    type="submit" 
+                    bsSize="large" 
+                    isLoading={isLoading} 
+                    disabled={!validateForm()}
+                >
+                    Login
+                </LoaderButton>
             </form>
         </div>
     );
