@@ -1,10 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { PageHeader, ListGroup } from "react-bootstrap";
+import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { API } from "aws-amplify";
 import "./Home.css";
+
 
 export default function Home(props) {
     const [notes, setNotes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    /**
+     make a request to our /notes API to get the list of notes when our component first loads. But only if the user is authenticated. Since our hook relies on props.isAuthenticated, we need to pass it in as the second argument in the useEffect call as an element in the array. 
+     */
+    useEffect(() => {
+        async function onLoad() {
+          if (!props.isAuthenticated) {
+            return;
+          }
+      
+          try {
+            const notes = await loadNotes();
+            setNotes(notes);
+          } catch (e) {
+            alert(e);
+          }
+      
+          setIsLoading(false);
+        }
+      
+        onLoad();
+      }, [props.isAuthenticated]);
+      
+      function loadNotes() {
+        return API.get("notes", "/notes");
+      }
 
     /**
     Rendering the lander or the list of notes based on props.isAuthenticated.
@@ -15,8 +44,24 @@ export default function Home(props) {
      * @param {*} notes 
      */
     function renderNotesList(notes) {
-        return null;
-    }
+        return [{}].concat(notes).map((note, i) =>
+          i !== 0 ? (
+            <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
+              <ListGroupItem header={note.content.trim().split("\n")[0]}>
+                {"Created: " + new Date(note.createdAt).toLocaleString()}
+              </ListGroupItem>
+            </LinkContainer>
+          ) : (
+            <LinkContainer key="new" to="/notes/new">
+              <ListGroupItem>
+                <h4>
+                  <b>{"\uFF0B"}</b> Create a new note
+                </h4>
+              </ListGroupItem>
+            </LinkContainer>
+          )
+        );
+      }
 
     function renderLander() {
         return (
