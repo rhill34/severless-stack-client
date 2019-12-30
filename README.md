@@ -1,3 +1,6 @@
+## This is the Reference Guide for the Scaffolding for this demo.
+Serverless Stack is AWESOME!!! [Serverless Reference](https://serverless-stack.com/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
