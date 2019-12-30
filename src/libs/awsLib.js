@@ -1,9 +1,21 @@
+import { Storage } from "aws-amplify";
+
 /**
- * The user selects a file to upload.
-The file is uploaded to S3 under the user’s folder and we get a key back.
+takes a file object as a parameter.
 
-Create a note with the file key as the attachment.
-We are going to use the Storage module that AWS Amplify has. If you recall, that back in the Create a Cognito identity pool chapter we allow a logged in user access to a folder inside our S3 Bucket. 
+Generates a unique file name using the current timestamp (Date.now()). Of course, if your app is being used heavily this might not be the best way to create a unique filename. But this should be fine for now.
 
-AWS Amplify stores directly to this folder if we want to privately store a file.
+Upload the file to the user’s folder in S3 using the Storage.vault.put() object. Alternatively, if we were uploading publicly you can use the Storage.put() method.
+
+And return the stored object’s key.
+ * @param {*} file 
  */
+export async function s3Upload(file) {
+    const filename = `${Date.now()}-${file.name}`;
+
+    const stored = await Storage.vault.put(filename, file, {
+        contentType: file.type
+    });
+
+    return stored.key;
+}

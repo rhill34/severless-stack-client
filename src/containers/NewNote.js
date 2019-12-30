@@ -3,6 +3,7 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { API } from "aws-amplify";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
+import { s3Upload } from "../libs/awsLib";
 import "./NewNote.css";
 
 export default function NewNote(props) {
@@ -17,7 +18,12 @@ export default function NewNote(props) {
   function handleFileChange(event) {
     file.current = event.target.files[0];
   }
-
+  /**
+  We upload the file using the s3Upload method.
+  
+  Use the returned key and add that to the note object when we  create the note.
+   @param {*} event 
+   */
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -32,7 +38,11 @@ export default function NewNote(props) {
     setIsLoading(true);
 
     try {
-      await createNote({ content });
+      const attachment = file.current
+        ? await s3Upload(file.current)
+        : null;
+
+      await createNote({ content, attachment });
       props.history.push("/");
     } catch (e) {
       alert(e);
