@@ -55,12 +55,6 @@ export default function Notes(props) {
         });
     }
 
-    function saveNote(note) {
-        return API.put("notes", `/notes/${props.match.params.id}`, {
-            body: note
-        });
-    }
-
     /**
      * If there is a file to upload we call s3Upload to upload it and save the key we get from S3. If there isn’t then we simply save the existing attachment object, note.attachment.
 
