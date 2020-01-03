@@ -1,34 +1,17 @@
-import React, { Component } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import LoaderButton from "../components/LoaderButton";
-import "./Settings.css";
+import React, { useState } from "react";
+import { API } from "aws-amplify";
 
-export default class Settings extends Component {
-    constructor(props) {
-        super(props);
+export default function Settings(props) {
+  const [isLoading, setIsLoading] = useState(false);
 
-        this.state = {
-        };
-    }
+  function billUser(details) {
+    return API.post("notes", "/billing", {
+      body: details
+    });
+  }
 
-    render() {
-        return (
-            <div className="Settings">
-                <LinkContainer to="/settings/email">
-                    <LoaderButton
-                        block
-                        bsSize="large"
-                        text="Change Email"
-                    />
-                </LinkContainer>
-                <LinkContainer to="/settings/password">
-                    <LoaderButton
-                        block
-                        bsSize="large"
-                        text="Change Password"
-                    />
-                </LinkContainer>
-            </div>
-        );
-    }
+  return (
+    <div className="Settings">
+    </div>
+  );
 }
