@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-
 export default function AuthenticatedRoute({ component: C, appProps, ...rest }) {
-  console.log(appProps);
   return (
     <Route
       {...rest}
@@ -13,8 +11,7 @@ export default function AuthenticatedRoute({ component: C, appProps, ...rest }) 
           : <Redirect
             to={`/login?redirect=${props.location.pathname}${props.location
               .search}`}
-          />
-        }
+          />}
     />
   );
 }
