@@ -25,7 +25,7 @@ function App(props) {
       }
     }
 
-    setIsAuthenticating(false);
+     setIsAuthenticating(false);
   }
 
   async function handleLogout() {

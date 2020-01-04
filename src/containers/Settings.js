@@ -10,10 +10,10 @@ export default function Settings(props) {
 
     function billUser(details) {
         return API.post("notes", "/billing", {
-          body: details
+            body: details
         });
-      }
-      
+    }
+
     async function handleFormSubmit(storage, { token, error }) {
         if (error) {
             alert(error);
@@ -35,6 +35,7 @@ export default function Settings(props) {
             setIsLoading(false);
         }
     }
+
     return (
         <div className="Settings">
             <StripeProvider apiKey={config.STRIPE_KEY}>
