@@ -4,6 +4,7 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { API } from "aws-amplify";
 import "./Home.css";
+import {SeeMeeLogo} from "../build/static/media/demologo.png";
 
 
 export default function Home(props) {
@@ -67,7 +68,7 @@ export default function Home(props) {
     function renderLander() {
         return (
             <div className="lander">
-                
+                <img src ={SeeMeeLogo} alt="SeeMee Logo" />
                 <h1>SeeMee Demo</h1>
                 <p>A simple note taking app to structure the SeeMee: Elevator Pitch Demo App. 12/30/2019</p>
               <div>
