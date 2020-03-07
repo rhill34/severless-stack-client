@@ -9,11 +9,11 @@
 .Home .lander p { 
     color: #999;
 }
-
+/* Feat: added 03/07/2020 */
 .Home .lander div {
     padding-top: 20px;
 }
-
+/* Feat: added 03/07/2020 */
 .Home .lander div a:first-child {
     margin-right: 20px;
 }
@@ -26,7 +26,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  
+
 .Home .notes p {
     color: #666;
   }
