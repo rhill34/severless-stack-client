@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { API } from "aws-amplify";
@@ -68,6 +69,14 @@ export default function Home(props) {
             <div className="lander">
                 <h1>SeeMee Demo</h1>
                 <p>A simple note taking app to structure the SeeMee: Elevator Pitch Demo App. 12/30/2019</p>
+              <div>
+              <Link to="/login" className="btn btn-info btn-lg">
+                Login
+              </Link>
+              <Link to="/signup" className="btn btn-success btn-lg">
+                Signup
+              </Link>
+              </div>
             </div>
         );
     }
