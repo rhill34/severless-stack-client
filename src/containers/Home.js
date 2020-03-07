@@ -69,7 +69,7 @@ export default function Home(props) {
             <div className="lander">
                 <img src={SeeMeeLogo} alt="SeeMee Logo" />
                 <h1>SeeMee Demo</h1>
-                <p>A simple note taking app to structure the SeeMee: Elevator Pitch Demo App. 12/30/2019</p>
+                <p>A simple note taking app to structure the SeeMee: Pitch Demo App. 03/07/2020</p>
               <div>
               <Link to="/login" className="btn btn-info btn-lg">
                 Login
