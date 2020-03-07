@@ -18,6 +18,14 @@
     margin-right: 20px;
 }
 
+/*Feat: added 03/07/2020*/
+@media
+    (max-width: 375px) {
+        .Home .lander img {
+            max-height: 10rem;
+        }
+    }
+
 .Home .notes h4 {
     font-family: 'Montserrat Alternates', sans-serif; 
     font-weight: 600;
