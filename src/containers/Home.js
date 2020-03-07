@@ -68,7 +68,7 @@ export default function Home(props) {
     function renderLander() {
         return (
             <div className="lander">
-                <img src ={SeeMeeLogo} alt="SeeMee Logo" />
+                <img src={SeeMeeLogo} alt="SeeMee Logo" />
                 <h1>SeeMee Demo</h1>
                 <p>A simple note taking app to structure the SeeMee: Elevator Pitch Demo App. 12/30/2019</p>
               <div>
