@@ -4,7 +4,7 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { API } from "aws-amplify";
 import "./Home.css";
-import {SeeMeeLogo} from "../build/static/media/demologo.png";
+import {SeeMeeLogo} from "./assets/demologo.png";
 
 
 export default function Home(props) {
